@@ -1,157 +1,3 @@
-/* * {
-  box-sizing: border-box;
-}
-
-img {
-  width: 100%;
-}
-
-body {
-  margin: 0;
-  color: rgb(2, 7, 56);
-  font-family: 'Montserrat', sans-serif;
-  height: 100vh;
-
-}
-
-.start-btn {
-  position: absolute;
-  top: 80%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  outline: none;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-size: 18px;
-  background: rgb(59, 78, 133);
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  text-transform: uppercase;
-  box-shadow: 0 0 10px 0px rgb(255, 255, 255);
-  cursor: pointer;
-  transition: 0.3s ease;
-  z-index: 10;
-}
-.information {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background: rgb(59, 78, 133);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  text-transform: uppercase;
-  z-index: 10;
-
-
-}
-
-.start-btn:hover {
-  box-shadow: 0 0 15px 0px rgb(97, 219, blue);
-  transform: scale(1.2);
-}
-
-.information:hover {
-  box-shadow: 0 0 15px 0px rgb(97, 219, blue);
-  transform: scale(1.2);
-}
-
-.game {
-  min-height: 100vh;
-  background-image: url('../img/images1.jpg'), url('../img/galaxy.jpg');
-  background-size: 90%, 100%, cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-color: #2a3155;
-  padding: 50px, 0;
-  background-attachment: fixed;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.rules-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3 ease;
-}
-
-.rules-popup.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.rules-content {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px;
-  text-align: center;
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-
-}
-
-.rules-popup.show .rules-content {
-  transform: scale(1);
-}
-
-.container {
-  width: 90%;
-  margin: 0 auto;
-
-}
-
-.game-block {
-  border-radius: 15px;
-  border: 2px solid #a7a7a7;
-  padding: 20px 0 30px 0;
-  box-shadow: 0 0 5px 0 rgb(255, 255, 255);
-  opacity: 0;
-  display: none;
-  transition: 2s;
-
-
-}
-
-.game-title {
-  margin-top: 0;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 30px;
-  letter-spacing: 5px;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-
-}
-
-.game-wrap{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-}
-
-.block-questions {
-  flex-basis: 70%;
-} */
 * {
   box-sizing: border-box;
 }
@@ -162,12 +8,14 @@ img {
 
 body {
   margin: 0;
-  color: rgb(2, 7, 56);
+  color: #ffffff;
   font-family: 'Montserrat', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #0d1117;
+  overflow-x: hidden;
 }
 
-/* --- ԳԵՂԵՑԿԱՑՎԱԾ START ԿՈՃԱԿ --- */
+
 .start-btn {
   position: absolute;
   top: 80%; 
@@ -175,81 +23,84 @@ body {
   transform: translate(-50%, -50%);
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 14px 32px;
+  padding: 16px 36px;
   border-radius: 50px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
   letter-spacing: 1.5px;
-  background: linear-gradient(135deg, #3b4e85 0%, #1e2856 100%);
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e1b4b 100%);
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   text-transform: uppercase;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
 }
 
 .start-btn:hover {
-  background: linear-gradient(135deg, #4c63a6 0%, #2a3875 100%);
-  box-shadow: 0 0 20px rgba(97, 219, 255, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5);
-  transform: translate(-50%, -50%) scale(1.08);
+  background: linear-gradient(135deg, #334155 0%, #1e1b4b 100%);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), inset 0 1px 3px rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%) scale(1.06);
 }
 
-/* --- ԳԵՂԵՑԿԱՑՎԱԾ INFORMATION ԿՈՃԱԿ --- */
 .information {
   position: absolute;
   top: 20px;
   right: 20px;
-  padding: 10px 22px;
-  background: linear-gradient(135deg, #3b4e85 0%, #1e2856 100%);
-  color: white;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
   z-index: 10;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
 }
 
 .information:hover {
-  background: linear-gradient(135deg, #4c63a6 0%, #2a3875 100%);
-  box-shadow: 0 0 18px rgba(97, 219, 255, 0.7);
-  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
+  transform: translateY(-2px);
 }
 
+/* --- MAIN GAME SECTION --- */
 .game {
   min-height: 100vh;
   background-image: url('../img/images1.jpg'), url('../img/galaxy.jpg');
-  background-size: 90%, 100%, cover;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-color: #2a3155;
-  padding: 50px, 0;
+  background-color: #0b0f19;
+  padding: 40px 0;
   background-attachment: fixed;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
 }
 
+/* --- KANONNERI POPUP --- */
 .rules-popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 100;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3 ease;
+  transition: all 0.3s ease;
 }
 
 .rules-popup.show {
@@ -258,32 +109,39 @@ body {
 }
 
 .rules-content {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px;
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #e2e8f0;
+  padding: 35px;
+  border-radius: 16px;
+  max-width: 520px;
   text-align: center;
   transform: scale(0.9);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
 }
 
 .rules-popup.show .rules-content {
   transform: scale(1);
 }
 
+/* --- CONTAINER & GAME BLOCK --- */
 .container {
   width: 90%;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .game-block {
-  border-radius: 15px;
-  border: 2px solid #a7a7a7;
-  padding: 20px 0 30px 0;
-  box-shadow: 0 0 5px 0 rgb(255, 255, 255);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(10, 15, 30, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.05);
   opacity: 0;
   display: none;
-  transition: 2s;
+  transition: opacity 1s ease;
 }
 
 .game-title {
@@ -291,21 +149,400 @@ body {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   text-align: center;
-  font-size: 30px;
-  letter-spacing: 5px;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 28px;
+  letter-spacing: 4px;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+  margin-bottom: 25px;
 }
 
 .game-wrap {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 25px;
+  font-size: 18px;
 }
 
+/* --- ՀԱՐՑԵՐ (BLOCK QUESTIONS) --- */
 .block-questions {
-  flex-basis: 70%;
+  flex-basis: 68%;
+  display: flex;
+  flex-direction: column;
+}
+
+.block-questions h2 {
+  text-align: center;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.block-answers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.answer {
+  position: relative;
+  overflow: hidden;
+  flex-basis: 48%;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.4);
+  color: #ffffff;
+  padding: 16px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.answer:hover {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-color: #38bdf8;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
+  transform: translateY(-2px);
+}
+
+.answer-active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: rgba(30, 58, 138, 0.85);
+  border-radius: 30px;
+  z-index: 1;
+  transition: width 1s cubic-bezier(0.67, -0.01, 0.25, 0.55);
+}
+
+.color-active {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 2;
+}
+
+/* Պատասխանի վիճակները (Ճիշտ / Սխալ) */
+.green-bg {
+  background: linear-gradient(135deg, #166534 0%, #15803d 100%) !important;
+  border-color: #22c55e !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.8) !important;
+}
+
+.error-answer {
+  background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%) !important;
+  border-color: #ef4444 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.8) !important;
+}
+
+/* --- ԱՋ ԲԼՈԿ (ՕԳՆՈՒԹՅՈՒՆՆԵՐ + ՇԱՀՈՒՄՆԵՐ) --- */
+.block-win {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 20px;
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hints {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.hints-help {
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  background: rgba(15, 23, 42, 0.8);
+  min-width: 55px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hall-help, .changed-question, .ai-help {
+  margin: 0;
+}
+
+.hints-help span {
+  position: absolute;
+  display: block;
+  background-color: #ef4444;
+  border-radius: 4px;
+  width: 4px;
+  height: 50px;
+  top: -8px;
+  left: calc(50% - 2px);
+  transform: rotate(-45deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hints-help .close-right {
+  transform: rotate(45deg);
+}
+
+.hints-help:hover {
+  background-color: #0284c7;
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+.hints-help_spent {
+  background-color: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #9ca3af;
+  cursor: default;
+}
+
+.hints-help_spent span {
+  opacity: 1;
+}
+
+.hints-help_spent:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+  box-shadow: none;
+}
+
+/* AI EXPLAIN POPUP */
+.ai-explain-block {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  width: 280px;
+  padding: 16px 20px;
+  background-color: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #38bdf8;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.3);
+  color: #ffffff;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+.ai-explain-block.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ai-explain-block h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: #38bdf8;
+  text-align: center;
+}
+
+.ai-explain-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.ai-explain-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #ef4444;
+  transition: transform 0.2s ease;
+}
+
+.ai-explain-close:hover {
+  transform: scale(1.2);
+}
+
+/* --- ՇԱՀՈՒՄՆԵՐԻ ՑՈՒՑԱԿ (WINS) --- */
+.wins {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 2px;
+}
+
+.wins span {
+  min-width: 28px;
+  display: inline-block;
+  text-align: right;
+  margin-right: 15px;
+  color: #94a3b8;
+}
+
+.wins-block {
+  line-height: 24px;
+  margin-left: 0;
+  padding: 3px 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.win-guaranteed {
+  color: #facc15 !important;
+  font-weight: 700;
+}
+
+.win-guaranteed span {
+  color: #facc15 !important;
+}
+
+.wins-active {
+  background: linear-gradient(90deg, #eab308 0%, #ca8a04 100%);
+  color: #0f172a !important;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(234, 179, 8, 0.6);
+}
+
+.wins-active span {
+  color: #0f172a !important;
+}
+
+/* --- ԱՎԱՐՏԵԼ ԽԱՂԸ ԿՈՃԱԿ --- */
+.end-btn {
+  outline: none;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.end-btn:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.7);
+  transform: translateX(-50%) scale(1.05);
+}
+
+.user-win {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.user-win p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+}
+
+.block-event {
+  pointer-events: none;
+}
+
+.question {
+  display: none;
+}
+
+.question-active {
+  display: block;
+}
+
+/* --- RESPONSIVE ADAPTATION --- */
+@media (max-width: 1200px) {
+  .game-wrap {
+    gap: 15px;
+  }
+  .block-questions {
+    flex-basis: 62%;
+  }
+  .block-win {
+    flex-basis: 38%;
+  }
+  .wins-block {
+    font-size: 13px;
+    padding: 2px 10px;
+  }
+}
+
+@media (max-width: 992px) {
+  .game-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+  .block-questions, .block-win {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .block-win {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+  .block-answers {
+    width: 100%;
+  }
+  .end-btn {
+    position: static;
+    transform: none;
+    margin: 25px auto 0;
+    display: block;
+    opacity: 1;
+  }
+  .end-btn:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 576px) {
+  .block-answers {
+    flex-direction: column;
+  }
+  .answer {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .game-title {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+  .block-questions h2 {
+    font-size: 16px;
+    padding: 12px;
+  }
 }
