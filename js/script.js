@@ -5,7 +5,7 @@ let mainGame = document.querySelector('.game-block'),
   startBtn = document.querySelector('.start-btn'),
   endBtn = document.querySelector('.end-btn'),
   btnAnswers = document.querySelectorAll('.answer'),
-  blockQuestion = document.querySelector('.question'),
+  blocksQuestion = document.querySelector('.question'),
   helpBtns = document.querySelector('.hints-help'),
   winBlock = document.querySelector('.wins-block'),
   helpFifty = document.querySelector('.fifty-fifty'),
@@ -174,11 +174,11 @@ helpFifty.addEventListener('click', function removeTwoBlocks() {
   let numRandom = Math.floor(Math.random() * blockActiveQuestion.children[1].children.length)
   let blockChildrenAnswer = blockActiveQuestion.children[1].children
   let nameQuestion = blockActiveQuestion.classList[1]
-  let  blockCorrectAnswer = getBlockAnswer(blockChildrenAnswer,nameQuestion)
+  let blockCorrectAnswer = getBlockAnswer(blockChildrenAnswer, nameQuestion)
   blockCorrectAnswer.classList.add('fifty-active')
-  let blockRandom = getBlockRandom(blockChildrenAnswer,blockCorrectAnswer,numRandom)
+  let blockRandom = getBlockRandom(blockChildrenAnswer, blockCorrectAnswer, numRandom)
   removeBlocks(blockChildrenAnswer)
-  helpFifty.classList.add('hints-help_spent','block-event')
+  helpFifty.classList.add('hints-help_spent', 'block-event')
 
 
 })
@@ -284,4 +284,226 @@ helpAI.addEventListener('click', async function getHelpAI() {
 
 aiExplainClose.addEventListener('click', () => {
   aiExplainBlock.classList.remove('show');
-}); 
+});
+async function askAI(questionText, answerOptions) {
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${OPENAI_KEY}`
+    },
+    body: JSON.stringify({
+      model: OPENAI_MODEL || 'gpt-3.5-turbo',
+      temperature: 0,
+      response_format: { type: 'json_object' },
+      messages: [
+        {
+          role: 'system',
+          content: 'Դու օգնում ես «Ո՞վ է ուզում դառնալ միլիոնատեր» խաղում։ ' +
+            'Ընտրիր ճիշտ պատասխանը տրված տարբերակներից և բացատրիր կարճ (2-3 նախադասությամբ)՝ ինչու է այն ճիշտ։ ' +
+            'Պատասխանիր ԲԱՑԱՌԱՊԵՍ JSON ձևաչափով՝ {"answer": "<տարբերակի ամբողջական տեքստը>", "explanation": "<բացատրություն>"}, ոչինչ ավելին։'
+        },
+        {
+          role: 'user',
+          content: `Հարց: ${questionText}\nՏարբերակներ:\n${answerOptions.join('\n')}`
+        }
+      ]
+    })
+  });
+}
+function getStartGame() {
+  getStartQuestions()
+  getStartBlockAnswers()
+  getStartBlockWins()
+  getStartBlocksHelp()
+
+
+
+
+}
+function getStartQuestions() {
+  for (let i = 0; i < blockQuestion.length; i++) {
+    blockQuestion[i].children[1].classList.remove('block-event')
+    blockQuestion[i].classList.remove('animate-fadeOut');
+    if (blockQuestion[i].classList.contains('question-active')) {
+      blockQuestion[i].classList.remove('question-active')
+    }
+    blockQuestion[0].classList.add('question-active')
+  }
+}
+// Վերականգնում է պատասխանների բլոկը
+function getStartBlockAnswers() {
+  for (let i = 0; i < btnAnswers.length; i++) {
+    if (btnAnswers[i].children[0]) {
+      btnAnswers[i].children[0].remove();
+    }
+    btnAnswers[i].classList.remove('green-bg', 'error-answer', 'fifty-active', 'animate__zoomOut', 'color-active');
+  }
+}
+// Այս ֆունկցիան կկանչվի այն ժամանակ, երբ անհրաժեշտ լինի վերականգնել պատասխանների բլոկները
+function getStartBlockWins() {
+  for (let i = 0; i < winBlock.length; i++) {
+    winBlock[i].classList.remove('wins-active', 'animate__animated', 'animate__pulse', 'win-guaranteed', 'animate__tada', 'animate__heartBeat');
+  }
+}
+//նախատեսված է հուշումների  բլոկները զրոյացնելու  համար։
+function getStartBlocksHelp() {
+  for (let i = 0; i < helpBtns.length; i++) {
+    helpBtns[i].classList.remove('block-event', 'hints-help_spent');
+  }
+  aiExplainBlock.classList.remove('show');
+  aiExplainText.innerText = '';
+}
+
+function correctnessAnswer(numberQuestion, userAnswer, blockAnswer, blockQuestionParent) {
+  const corectSound = new Audio('./music/correct-sound.mp3')
+  const incorrectSound = new Audio("./music/incorrect-sound.mp3")
+  function playCorrectSound() {
+    playCorrectSound.play()
+  }
+  function playIncorrectSound() {
+    incorrectSoundFlag = true
+    fixed1.pause()
+    incorrectSound.play()
+
+  }
+  if (answer[numberQuestion] === userAnswer) {
+    setTimeout(() => {
+      blockAnswer.classList.add('green-bg')
+    }, 500
+    );
+    playCorrectSound()
+    if (numberQuestion === 'question_extra') {
+      setTimeout(() => {
+        extraQuestion.classList.remove('question_extra')
+        extraQuestion.classList.remove('question_active')
+
+      }, 500);
+
+
+    }
+
+  } else {
+    setTimeout(() => {
+      blockAnswer.classList.add('eror-answer')
+      setTimeout(() => {
+        let blockAnswer = getBlockAnswer(blockQuestionParentElement.children, numberQuestion)
+        blockAnswer.classList.add('green-bg')
+      }, 1000);
+    }, 500);
+
+    playIncorrectSound()
+    setTimeout(() => {
+      getRemoveClassName();
+    }, 3500);
+    setTimeout(() => {
+      mainGame.classList.remove('animate-backInUp')
+      gameWrapper.classList.removr('animate_flipInX')
+      mainGame.classList.add('animate_animated', 'animate_backOutUp')
+
+      setTimeout(() => {
+        mainGame.style.display = 'none'
+        startBtn.style.display = 'block'
+        startBtn.classList.remove('animate-backInUp')
+        startBtn.classList.add('animate-backInDown')
+
+      }, 1000);
+      setTimeout(() => {
+        startBtn.classList.remove('animate_backInDown')
+        game.style.backgroundImage = ''
+
+      }, 2000);
+
+      let userWin = document.querySelector('.uset-win')
+      if (userWin) {
+        userWin.remove()
+
+      }
+      getStartGame
+    }, 4500
+
+    );
+    return;
+  }
+  setTimeout(() => {
+    getBlockQuestion()
+
+  }, 2000
+  );
+}
+changeQuestion.addEventListener('click', function changeQuestion() {
+  let blockActiveQuestion = getActiveBlockQuestion()
+  blockActiveQuestion.remove()
+  extraQuestion.classList.add("question_active")
+  changeQuestion.classList.add('hints-help_spent', 'block-event')
+}
+);
+function getRemoveClassName() {
+  for (let i = 0; i < blockQuestion; i++) {
+    if (blockQuestion[i].classList.contains('question-active')) {
+      blockQuestion[i].classList.add('animate_animated', 'animatr_fadeOut')
+      blockQuestion[i].classList.remove('question-active')
+      getBlockBefore(blockQuestion[i])
+
+    }
+
+  }
+}
+function getblockBefore(block) {
+  block, ibsertAdjacentHTML('beforbegin', `<div class="user-win animate__animated animate__fadeIn"><p>Ձեր հաղթանակը</p><p>"${getGarantWin()}"</p></div>`);
+
+}
+function getGarantWin() {
+  for (let i =0; i<winBlock.length; i++ ) {
+    if (winBlock[i].classList.contains('win-gurenteed')) {
+      let getUserWin = winBlock[i].innerText
+      for (let sybol of getUserWin) {
+        if (sybol === ',') {
+          sybol = ''
+          continue;
+
+        }
+        getUserWin += sybol
+
+      }
+      return getUserWin + 'ԴՐԱՄ'
+
+    }
+
+
+
+
+
+
+  }
+  return 0
+   
+}
+function getBlockAnswer(blockChildrenElem, numberQuestion) {
+  //Ուսումնասիրում է բոլոր պատասխանները
+  for (let i = 0; i < blockChildrenElem.length; i++) {
+    //ստուգում է եթե տվյալ տեքստը համապատասխանում է answers-ի numberQuestion-րդին,
+    // որպես ճիշտ պատասխան պահպանումէ տվյալ պատասխանը
+    if (blockChildrenElem[i].innerText === answers[numberQuestion]) {
+      return blockChildrenElem[i];
+    }
+  }
+}
+const answer = {
+  question_1: "Գ. Փողային",
+  question_2: "Գ. 100",
+  question_3: "Բ. Մարս",
+  question_4: "Գ. Երևան",
+  question_5: "Բ. Առյուծ",
+  question_6: "Բ. Թթվածին",
+  question_7: "Բ. Հովհաննես Թումանյան",
+  question_8: "Գ. 7",
+  question_9: "Դ. Խաղաղ",
+  question_10: "Բ. 301 թ.",
+  question_11: "Ա. Տիգրան Մեծ",
+  question_12: "Բ. Ենթաստամոքսային գեղձ",
+  question_13: "Գ. Պերու",
+  question_14: "Բ. Իսահակ Նյուտոն",
+  question_15: "Գ. Բայկալ",
+  question_extra: "Բ. Լեոնարդո դա Վինչի"
+};
